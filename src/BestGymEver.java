@@ -32,6 +32,23 @@ public class BestGymEver {
         }
     }
 
+    public String inputDialog () {
+        String input = JOptionPane.showInputDialog(null, "Type in your full name or social security number:",
+                nameOfGym, JOptionPane.QUESTION_MESSAGE);
+
+        if (input == null) {
+            JOptionPane.showMessageDialog(null, "Program aborted.", nameOfGym,
+                    JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+        if (input.equals("")) {
+            JOptionPane.showMessageDialog(null, "Incorrect entry.", nameOfGym,
+                    JOptionPane.ERROR_MESSAGE);
+            inputDialog();
+        }
+        return input;
+    }
+
     public void mainProgram() {
 
             while (true) {
@@ -39,19 +56,7 @@ public class BestGymEver {
                      PrintWriter outStream = new PrintWriter(new BufferedWriter
                              (new FileWriter("src/CustomerHistory.txt", true)))) {
 
-                    String input = JOptionPane.showInputDialog(null, "Type in your full name or social security number:",
-                            nameOfGym, JOptionPane.QUESTION_MESSAGE);
-
-                    if (input == null) {
-                        JOptionPane.showMessageDialog(null, "Program aborted.", nameOfGym,
-                                JOptionPane.INFORMATION_MESSAGE);
-                        System.exit(0);
-                    }
-                    if (input.equals("")) {
-                        JOptionPane.showMessageDialog(null, "Incorrect entry.", nameOfGym,
-                                JOptionPane.ERROR_MESSAGE);
-                        continue;
-                    }
+                        String input = inputDialog();
 
                     Boolean foundCustomer = false;
                     while (!foundCustomer) {

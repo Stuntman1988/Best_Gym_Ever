@@ -6,7 +6,6 @@ public class BestGymEverTest {
 
     BestGymEver testGym = new BestGymEver();
 
-
     @Test
     void readSsnTest() {
         String test = "8906138493, Ida Idylle";
@@ -25,10 +24,11 @@ public class BestGymEverTest {
 
     @Test
     void activeYearCardTest() {
+        System.out.println("Date now: " + LocalDate.now());
         LocalDate dateTestActive = LocalDate.now().minusMonths(9);
-        System.out.println(dateTestActive);
+        System.out.println("Date true test: " + dateTestActive);
         LocalDate dateTestExpired = LocalDate.now().minusMonths(14);
-        System.out.println(dateTestExpired);
+        System.out.println("Date false test: " + dateTestExpired);
         assert (testGym.activeYearCard(String.valueOf(dateTestActive)) == true);
         assert !(testGym.activeYearCard(String.valueOf(dateTestActive)) == false);
         assert (testGym.activeYearCard(String.valueOf(dateTestExpired)) == false);
